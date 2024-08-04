@@ -1,0 +1,16 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "server": "cd ./backend && yarn start:dev",
+    "client": "cd ./frontend && yarn dev",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+  },
+  "dependencies": {
+    "@prisma/client": "^5.16.2",
+    "concurrent": "^0.3.2",
+    "concurrently": "^8.2.2"
+  }
+}
