@@ -1,0 +1,26 @@
+{
+	"tabWidth": 2,
+	"singleAttributePerLine": true,
+	"useTabs": true,
+	"importOrder": [
+		"<THIRD_PARTY_MODULES>",
+		"^@/components/(.*)$",
+		"^@/layout/(.*)$",
+		"^@/ui/(.*)$",
+		"^@/providers/(.*)$",
+		"^@/constants/(.*)$",
+		"^@/types/(.*)$",
+		"^@/assets/(.*)$",
+		"^@/config/(.*)$",
+		"^@/store/(.*)$",
+		"^@/hooks/(.*)$",
+		"^@/utils/(.*)$",
+		"^@/api/(.*)$",
+		"^../(.*)$",
+		"^./(.*)$",
+		"^(.scss)$"
+	],
+	"importOrderSeparation": false,
+	"importOrderSortSeparation": true,
+	"plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
