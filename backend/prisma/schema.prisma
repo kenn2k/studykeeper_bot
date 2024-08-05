@@ -22,21 +22,32 @@ model User {
     password String
 
     tasks Task[]
-    // sessions AuthSession[]
 
     @@map("user")
 }
 
 model Task {
-    id      String  @id @default(cuid())
+    id      String   @id @default(cuid())
     note    String?
+    task    String
+    date    DateTime
     topic   String
     teacher String
-    task    String
-    userId  String  @map("user_id")
+    userId  String   @map("user_id")
+    // subjectId String   @map("subject_id")
 
     //! connection with User by userId
     user User @relation(fields: [userId], references: [id])
+    // subject Subject @relation(fields: [subjectId], references: [id])
 
     @@map("task")
 }
+
+// model Subject {
+//     id      String @id @default(cuid())
+//     topic   String
+//     teacher String
+//     tasks   Task[]
+
+//     @@map("subject")
+// }

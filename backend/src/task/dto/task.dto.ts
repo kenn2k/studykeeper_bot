@@ -2,16 +2,17 @@ import { IsDate, IsDateString, IsOptional, IsString } from 'class-validator';
 
 export class CreateTaskDto {
   @IsString()
-  topic: string;
-
-  @IsString()
   task: string;
 
+  @IsOptional()
   @IsString()
-  note: string;
+  note?: string;
 
   @IsDateString()
   date: string;
+
+  @IsString()
+  topic: string;
 
   @IsString()
   teacher: string;

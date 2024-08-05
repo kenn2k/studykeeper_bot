@@ -26,7 +26,11 @@ let TaskService = class TaskService {
     create(dto, userId) {
         return this.prisma.task.create({
             data: {
-                ...dto,
+                topic: dto.topic,
+                teacher: dto.teacher,
+                task: dto.task,
+                note: dto.note,
+                date: new Date(dto.date + 'T00:00:00Z'),
                 user: {
                     connect: {
                         id: userId,

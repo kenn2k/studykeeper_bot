@@ -27,4 +27,12 @@ export interface ITaskForm {
 	task: string;
 	topic: string;
 	id: string;
+	date: Date;
 }
+
+export type SbjTypes = {
+	name: string;
+	teacher: string;
+	_id: string;
+	subject?: string;
+};

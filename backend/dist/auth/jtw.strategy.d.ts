@@ -11,9 +11,10 @@ export declare class JwtStrategy extends JwtStrategy_base {
         tasks: {
             id: string;
             note: string | null;
+            task: string;
+            date: Date;
             topic: string;
             teacher: string;
-            task: string;
             userId: string;
         }[];
     } & {

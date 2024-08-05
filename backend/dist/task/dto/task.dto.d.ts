@@ -1,8 +1,8 @@
 export declare class CreateTaskDto {
-    topic: string;
     task: string;
-    note: string;
+    note?: string;
     date: string;
+    topic: string;
     teacher: string;
 }
 export declare class UpdateTaskDto {

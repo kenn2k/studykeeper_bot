@@ -1,3 +1,4 @@
+import { ITaskForm } from "@/types/types";
 import { apiProtected } from "@/app/api/interceptors";
 
 class TaskService {
@@ -8,12 +9,12 @@ class TaskService {
 		return res;
 	}
 
-	async createTask(data) {
+	async createTask(data: ITaskForm) {
 		const res = await apiProtected.post(this.BASE_URL, data);
 		return res;
 	}
 
-	async updateTask(id: string, data) {
+	async updateTask(id: string, data: ITaskForm) {
 		const res = await apiProtected.patch(`${this.BASE_URL}/${id}`, data);
 		return res;
 	}

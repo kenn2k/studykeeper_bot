@@ -31,9 +31,10 @@ export declare class AuthController {
             tasks: {
                 id: string;
                 note: string | null;
+                task: string;
+                date: Date;
                 topic: string;
                 teacher: string;
-                task: string;
                 userId: string;
             }[];
             id: string;

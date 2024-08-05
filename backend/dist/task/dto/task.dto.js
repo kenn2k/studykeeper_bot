@@ -17,12 +17,9 @@ exports.CreateTaskDto = CreateTaskDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateTaskDto.prototype, "topic", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
 ], CreateTaskDto.prototype, "task", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateTaskDto.prototype, "note", void 0);
@@ -30,6 +27,10 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateTaskDto.prototype, "date", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateTaskDto.prototype, "topic", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
