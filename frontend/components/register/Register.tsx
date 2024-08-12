@@ -31,11 +31,11 @@ const Register = () => {
 				className="flex flex-col    px-4 py-6 gap-4"
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<div className=" flex justify-between border-b-2 py-2">
+				<div className=" flex justify-between items-center border-b-2 border-[#C778DD] py-2">
 					<h1 className=" text-white font-bold text-2xl">Register</h1>
 					<Link
 						href="/auth/login"
-						className=" text-[#4C5151] border-2 rounded-md px-3 py-1 border-[#1D2228]"
+						className=" text-white border-2 rounded-md px-3 py-1 border-[#474747]"
 					>
 						Log In
 					</Link>
@@ -43,7 +43,7 @@ const Register = () => {
 
 				<div className="flex flex-col">
 					<input
-						className="w-full px-4 text-[#E6B333] outline-none bg-inherit border-4 rounded-md border-[#1D2228] placeholder:text-[#4C5151] py-2"
+						className="w-full px-4 text-[#C778DD] outline-none bg-inherit border-2 rounded-md border-[#474747] placeholder:text-[#4C5151] py-2"
 						type="email"
 						id="email"
 						placeholder="Email"
@@ -55,7 +55,7 @@ const Register = () => {
 				</div>
 				<div className="flex flex-col">
 					<input
-						className="w-full px-4 bg-inherit text-[#E6B333] outline-none border-4 rounded-md placeholder:text-[#4C5151] border-[#1D2228] py-2"
+						className="w-full px-4 bg-inherit text-[#C778DD] outline-none border-2 rounded-md placeholder:text-[#4C5151] border-[#474747] py-2"
 						type="password"
 						id="password"
 						placeholder="Password"
@@ -69,7 +69,7 @@ const Register = () => {
 				</div>
 				<button
 					type="submit"
-					className="bg-[#E6B333] text-white rounded-md py-2 px-4 mt-4"
+					className="bg-[#383838] border-[#C778DD] border-2 text-white rounded-md py-2 px-4 mt-4"
 				>
 					Register
 				</button>

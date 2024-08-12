@@ -14,14 +14,6 @@ const AddTask = () => {
 		formState: { errors },
 	} = useForm<ITaskForm>();
 
-	useEffect(() => {
-		const loadSbj = async () => {
-			const data = await taskService.getTasks();
-			console.log(data);
-		};
-		loadSbj();
-	}, []);
-
 	const onSubmit = async (data: ITaskForm) => {
 		if (!Object.keys(errors).length) {
 			const newTask: ITaskForm = {
@@ -34,7 +26,7 @@ const AddTask = () => {
 			};
 
 			await taskService.createTask(newTask);
-			router.push("/");
+			router.push("/tasks");
 		} else {
 			console.log("Form has errors, cannot submit.");
 		}

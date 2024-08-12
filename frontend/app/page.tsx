@@ -1,3 +1,5 @@
+import Main from "@/components/main/Maint";
+
 export default function Home() {
-  return <p>fsdf</p>;
+	return <Main />;
 }

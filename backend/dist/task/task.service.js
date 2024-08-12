@@ -24,13 +24,17 @@ let TaskService = class TaskService {
         });
     }
     create(dto, userId) {
+        const date = new Date(dto.date);
+        if (isNaN(date.getTime())) {
+            throw new Error('Invalid date format provided.');
+        }
         return this.prisma.task.create({
             data: {
                 topic: dto.topic,
                 teacher: dto.teacher,
                 task: dto.task,
                 note: dto.note,
-                date: new Date(dto.date + 'T00:00:00Z'),
+                date: date,
                 user: {
                     connect: {
                         id: userId,

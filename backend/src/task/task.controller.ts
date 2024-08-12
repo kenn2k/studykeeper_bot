@@ -5,7 +5,7 @@ import {
   Get,
   HttpCode,
   Param,
-  Patch,
+  Put,
   Post,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
@@ -13,7 +13,7 @@ import { CreateTaskDto } from './dto/task.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { CurrentUser } from 'src/auth/decorators/user.decorator';
 
-@Controller('tasks')
+@Controller('/tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
@@ -31,15 +31,16 @@ export class TaskController {
   }
 
   @HttpCode(200)
-  @Patch(':id')
+  @Put(':id')
   @Auth()
   update(
     @Body() dto: CreateTaskDto,
     @CurrentUser('id') userId: string,
     @Param('id') id: string,
   ) {
-    return this.taskService.update(dto, userId, id);
+    return this.taskService.update(dto, id, userId);
   }
+
   @HttpCode(200)
   @Delete(':id')
   @Auth()

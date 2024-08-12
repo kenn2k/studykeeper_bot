@@ -3,10 +3,9 @@ import Tasks from "@/components/tasks/Tasks";
 
 const page = () => {
 	return (
-		<>
-			<h1>sdgs</h1>
+		<div className=" p-[5%] h-full">
 			<Tasks />
-		</>
+		</div>
 	);
 };
 

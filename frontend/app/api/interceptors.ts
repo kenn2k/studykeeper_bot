@@ -10,9 +10,6 @@ const options: CreateAxiosDefaults = {
 	withCredentials: true,
 };
 
-console.log(process.env.NEXT_PUBLIC_BASE_URL);
-console.log(process.env.NEXT_PUBLIC_DOMAIN);
-
 export const axiosPublic = axios.create(options);
 
 const apiClassic = axios.create(options);

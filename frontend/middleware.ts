@@ -5,8 +5,6 @@ import { tokenService } from "@/services/token";
 export async function middleware(req: NextRequest, res: NextResponse) {
 	const { url, cookies } = req;
 
-	console.log(url, cookies);
-
 	const refreshToken = cookies.get(tokenService.REFRESH_TOKEN_NAME)?.value;
 
 	if (refreshToken && url.includes(AUTH.BASE_URL)) {

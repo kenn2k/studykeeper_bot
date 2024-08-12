@@ -29,7 +29,7 @@ let TaskController = class TaskController {
         return this.taskService.create(dto, userId);
     }
     update(dto, userId, id) {
-        return this.taskService.update(dto, userId, id);
+        return this.taskService.update(dto, id, userId);
     }
     delete(id) {
         return this.taskService.delete(id);
@@ -56,7 +56,7 @@ __decorate([
 ], TaskController.prototype, "create", null);
 __decorate([
     (0, common_1.HttpCode)(200),
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Put)(':id'),
     (0, auth_decorator_1.Auth)(),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, user_decorator_1.CurrentUser)('id')),
@@ -75,7 +75,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TaskController.prototype, "delete", null);
 exports.TaskController = TaskController = __decorate([
-    (0, common_1.Controller)('tasks'),
+    (0, common_1.Controller)('/tasks'),
     __metadata("design:paramtypes", [task_service_1.TaskService])
 ], TaskController);
 //# sourceMappingURL=task.controller.js.map
