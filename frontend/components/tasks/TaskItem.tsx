@@ -24,10 +24,10 @@ const TaskItem = ({
 
 	return (
 		<>
-			<h1 className="  text-lg font-bold p-2 rounded-t-lg text-[#C778DD] bg-[#2C2C2C] inline-block items-center gap-4 ">
+			<h1 className=" mt-10  text-lg font-bold p-2 rounded-t-lg text-[#C778DD] bg-[#2C2C2C] inline-block items-center gap-4 ">
 				{topic}
 			</h1>
-			<div className="h-full bg-[#2C2C2C] mb-16 rounded-r-lg p-4">
+			<div className="h-full bg-[#2C2C2C] mb-10  rounded-r-lg p-4">
 				<div
 					className={`flex gap-2 ${
 						isOverdue ? "justify-between" : "justify-end"

@@ -13,13 +13,18 @@ const Tasks = () => {
 	const [tasks, setTasks] = useState([]);
 	useEffect(() => {
 		const loadSbj = async () => {
-			// const data:ITaskForm = await taskService.getTasks();
-			// setTasks(response.data);
 			const response = await taskService.getTasks();
 			setTasks(response.data);
 		};
 		loadSbj();
 	}, []);
+
+	const ifError = () => {
+		if (!tasks) {
+			return console.log("no one task found");
+		}
+	};
+
 	const handleDelete = async (id: string) => {
 		try {
 			await taskService.deleteTask(id);
