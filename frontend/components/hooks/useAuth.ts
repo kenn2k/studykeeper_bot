@@ -6,7 +6,7 @@ export function useAuth() {
 
 	useEffect(() => {
 		const accessToken = tokenService.getAccessToken();
-		console.log("Access Token:", accessToken);
+
 		if (accessToken) {
 			setIsAuthenticated(true);
 		} else {

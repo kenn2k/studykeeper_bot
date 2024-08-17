@@ -15,7 +15,7 @@ const Main = () => {
 					{!isAuthenticated ? (
 						<Link
 							href="/auth/login"
-							className="text-[#C778DD] font-bold"
+							className="text-white font-bold"
 						>
 							Log In
 						</Link>

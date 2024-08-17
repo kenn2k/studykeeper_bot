@@ -5,3 +5,78 @@
 body {
 	background-color: #383838;
 }
+
+.fc {
+	font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+	.fc {
+		font-size: 0.9rem;
+	}
+
+	.fc-toolbar {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.fc-toolbar-title {
+		font-size: 1.2rem;
+	}
+
+	.fc-toolbar .fc-left,
+	.fc-toolbar .fc-right {
+		flex: 1 1 100%;
+		text-align: center;
+	}
+
+	.fc-toolbar .fc-center {
+		order: -1;
+		margin-bottom: 10px;
+	}
+}
+.fc .event-content {
+	white-space: normal;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.fc-daygrid-event {
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+}
+
+.fc .fc-daygrid-day-frame {
+	height: auto !important;
+}
+.fc .event-content {
+	white-space: normal;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.fc-daygrid-event {
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+	max-width: 100% !important;
+	display: block !important;
+}
+
+.fc .fc-daygrid-day-frame {
+	height: auto !important;
+}
+
+.fc-daygrid-event-dot {
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+}
+
+.fc-event-title {
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+}
