@@ -4,25 +4,29 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
 import { useEffect, useState } from "react";
+import { useGetTasks } from "@/components/hooks/useForm";
 import { ITaskForm } from "@/types/types";
-import { taskService } from "@/services/task";
 
 const Calendar = () => {
 	const [events, setEvents] = useState([]);
-
+	const { data, isError, isPending } = useGetTasks();
 	useEffect(() => {
-		const getTasks = async () => {
-			const response = await taskService.getTasks();
-			const tasks = response.data;
-			const formattedTasks = tasks.map((task: ITaskForm) => ({
+		if (data) {
+			const formattedTasks = data.map((task: ITaskForm) => ({
 				title: task.topic,
 				start: task.date,
 			}));
 			setEvents(formattedTasks);
-		};
+		}
+	}, [data]);
+	if (isPending) {
+		return <span>Loading...</span>;
+	}
 
-		getTasks();
-	}, []);
+	if (isError) {
+		return <span>Error: something happened</span>;
+	}
+
 	const renderEventContent = (eventInfo: any) => {
 		const title = eventInfo.event.title.replace(/^За\s*/, "");
 
