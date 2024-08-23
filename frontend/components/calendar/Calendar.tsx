@@ -13,7 +13,7 @@ const Calendar = () => {
 	useEffect(() => {
 		const getTasks = async () => {
 			const response = await taskService.getTasks();
-			const tasks = response.data; // Извлечение данных из AxiosResponse
+			const tasks = response.data;
 			const formattedTasks = tasks.map((task: ITaskForm) => ({
 				title: task.topic,
 				start: task.date,

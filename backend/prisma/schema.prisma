@@ -27,13 +27,13 @@ model User {
 }
 
 model Task {
-    id      String   @id @default(cuid())
+    id      String    @id @default(cuid())
     note    String?
-    task    String
-    date    DateTime
-    topic   String
-    teacher String
-    userId  String   @map("user_id")
+    task    String?
+    date    DateTime?
+    topic   String?
+    teacher String?
+    userId  String    @map("user_id")
     // subjectId String   @map("subject_id")
 
     //! connection with User by userId

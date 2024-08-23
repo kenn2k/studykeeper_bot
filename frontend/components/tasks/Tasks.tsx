@@ -1,6 +1,8 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { useGetTasks } from "@/components/hooks/useForm";
 import TaskItem from "@/components/tasks/TaskItem";
 import { ITaskForm } from "@/types/types";
 import { taskService } from "@/services/task";
@@ -10,32 +12,26 @@ interface ITaskItemProps extends ITaskForm {
 }
 
 const Tasks = () => {
-	const [tasks, setTasks] = useState([]);
-	useEffect(() => {
-		const loadSbj = async () => {
-			const response = await taskService.getTasks();
-			setTasks(response.data);
-		};
-		loadSbj();
-	}, []);
+	const { data, isError, isPending } = useGetTasks();
+	if (isPending) {
+		return <span>Loading...</span>;
+	}
 
-	const ifError = () => {
-		if (!tasks) {
-			return console.log("no one task found");
-		}
-	};
+	if (isError) {
+		return <span>Error: something happened</span>;
+	}
 
 	const handleDelete = async (id: string) => {
 		try {
 			await taskService.deleteTask(id);
-			setTasks(tasks.filter((task: ITaskForm) => task.id !== id));
+			data.filter((task: ITaskForm) => task.id !== id);
 		} catch (error) {
 			console.error("Failed to delete the task:", error);
 		}
 	};
 	return (
 		<div>
-			{tasks.map((task: ITaskItemProps) => (
+			{data.map((task: ITaskItemProps) => (
 				<TaskItem
 					key={task.id}
 					note={task.note}

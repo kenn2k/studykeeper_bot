@@ -18,7 +18,7 @@ const Register = () => {
 	const onSubmit = async (data: IAuthForm) => {
 		try {
 			const response = await authService.main("register", data);
-			console.log("User registered:", response.data);
+
 			router.push("/");
 		} catch (error) {
 			console.error("Registration error:", error);

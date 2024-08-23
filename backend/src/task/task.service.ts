@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { CreateTaskDto } from './dto/task.dto';
+import { CreateTaskDto, UpdateTaskDto } from './dto/task.dto';
 
 @Injectable()
 export class TaskService {
@@ -15,19 +15,10 @@ export class TaskService {
   }
 
   create(dto: CreateTaskDto, userId: string) {
-    const date = new Date(dto.date);
-
-    if (isNaN(date.getTime())) {
-      throw new Error('Invalid date format provided.');
-    }
-
     return this.prisma.task.create({
       data: {
-        topic: dto.topic,
-        teacher: dto.teacher,
-        task: dto.task,
-        note: dto.note,
-        date: date,
+        ...dto,
+        date: new Date(dto.date),
         user: {
           connect: {
             id: userId,
@@ -36,17 +27,28 @@ export class TaskService {
       },
     });
   }
+  //! ----------------------------
+  update(dto: UpdateTaskDto, taskId: string, userId: string) {
+    const updateData: any = { ...dto };
 
-  update(dto: Partial<CreateTaskDto>, taskId: string, userId: string) {
+    if (dto.date !== undefined) {
+      const parsedDate = new Date(dto.date);
+      if (!isNaN(parsedDate.getTime())) {
+        updateData.date = parsedDate.toISOString();
+      } else {
+        console.error('Invalid date format');
+      }
+    }
+
     return this.prisma.task.update({
       where: {
         userId,
         id: taskId,
       },
-      data: dto,
+      data: updateData,
     });
   }
-
+  //! ----------------------------
   delete(taskId: string) {
     return this.prisma.task.delete({
       where: {

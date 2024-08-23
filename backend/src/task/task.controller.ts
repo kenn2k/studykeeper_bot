@@ -5,11 +5,11 @@ import {
   Get,
   HttpCode,
   Param,
-  Put,
   Post,
+  Patch,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
-import { CreateTaskDto } from './dto/task.dto';
+import { CreateTaskDto, UpdateTaskDto } from './dto/task.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { CurrentUser } from 'src/auth/decorators/user.decorator';
 
@@ -31,10 +31,10 @@ export class TaskController {
   }
 
   @HttpCode(200)
-  @Put(':id')
+  @Patch(':id')
   @Auth()
   update(
-    @Body() dto: CreateTaskDto,
+    @Body() dto: UpdateTaskDto,
     @CurrentUser('id') userId: string,
     @Param('id') id: string,
   ) {

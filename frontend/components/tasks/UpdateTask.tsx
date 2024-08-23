@@ -1,40 +1,23 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useParams } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ITaskForm } from "@/types/types";
-import { taskService } from "@/services/task";
+import { useEditTask } from "@/components/hooks/useForm";
+import { ITaskForm, IUpdTaskForm } from "@/types/types";
 
 const UpdateTask = () => {
-	const router = useRouter();
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<ITaskForm>();
+	const { register, handleSubmit } = useForm<IUpdTaskForm>();
 
 	const { id } = useParams();
 
-	const stringId = Array.isArray(id) ? id[0] : id;
+	const { mutate } = useEditTask();
 
-	const onSubmit: SubmitHandler<ITaskForm> = async (data) => {
-		if (stringId) {
-			try {
-				const date = new Date(data.date);
+	const onSubmit: SubmitHandler<IUpdTaskForm> = (data) => {
+		const filteredData = Object.fromEntries(
+			Object.entries(data).filter(([key, value]) => value !== ""),
+		);
 
-				if (isNaN(date.getTime())) {
-					throw new Error("Invalid date");
-				}
-
-				const updatedData = { ...data, date: date };
-
-				await taskService.updateTask(stringId, updatedData);
-				router.push("/tasks");
-			} catch (error) {
-				console.error(error);
-			}
-		}
+		mutate({ id: id as string, data: filteredData });
 	};
 
 	return (
@@ -52,17 +35,12 @@ const UpdateTask = () => {
 							Оберіть предмет
 						</label>
 						<input
-							{...register("topic", { required: true })}
+							{...register("topic")}
 							type="text"
 							id="topic"
 							placeholder="Математика"
 							className="placeholder:text-sm rounded-md px-4 py-3 border-2 border-gray-300 outline-none"
 						/>
-						{errors.topic && (
-							<span className="text-red-500">
-								Це поле не повинно бути пустим
-							</span>
-						)}
 					</div>
 					<div className="flex flex-col">
 						<label
@@ -72,15 +50,12 @@ const UpdateTask = () => {
 							ПІБ викладача
 						</label>
 						<input
-							{...register("teacher", { required: true })}
+							{...register("teacher")}
 							type="text"
 							id="teacher"
 							placeholder="Гефтер С. Л."
 							className="placeholder:text-sm rounded-md px-4 py-3 border-2 border-gray-300 outline-none"
 						/>
-						{errors.teacher && (
-							<span className="text-red-500">Ініціали викладача</span>
-						)}
 					</div>
 					<div className="flex flex-col">
 						<label
@@ -107,7 +82,7 @@ const UpdateTask = () => {
 						<textarea
 							{...register("note")}
 							id="note"
-							placeholder="Это задание лучше выполнить с помощью Excel"
+							placeholder="Це завдання краще зробити за допомогою Exel"
 							className="placeholder:text-sm rounded-md p-4 border-2 border-gray-300 outline-none"
 							rows={2}
 						/>
@@ -120,12 +95,11 @@ const UpdateTask = () => {
 							Оберіть дату дедлайну
 						</label>
 						<input
-							{...register("date", { required: true })}
+							{...register("date")}
 							id="date"
 							type="date"
 							className="placeholder:text-sm  rounded-md px-4 py-3 border-2 border-gray-300 outline-none"
 						/>
-						{errors.date && <span className="text-red-500">Оберіть дату</span>}
 					</div>
 
 					<button

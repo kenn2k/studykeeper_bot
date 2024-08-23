@@ -1,33 +1,30 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useCreateTask } from "@/components/hooks/useForm";
 import { ITaskForm } from "@/types/types";
-import { taskService } from "@/services/task";
 
 const AddTask = () => {
-	const router = useRouter();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<ITaskForm>();
 
-	const onSubmit = async (data: ITaskForm) => {
+	const { mutate } = useCreateTask();
+
+	const onSubmit = (data: ITaskForm) => {
 		if (!Object.keys(errors).length) {
-			const newTask: ITaskForm = {
+			mutate({
 				topic: data.topic,
 				teacher: data.teacher,
 				task: data.task,
 				note: data.note,
 				date: data.date,
 				id: data.id,
-			};
-
-			await taskService.createTask(newTask);
-			router.push("/tasks");
+			});
 		} else {
-			console.log("Form has errors, cannot submit.");
+			console.log("form has errors");
 		}
 	};
 
@@ -101,7 +98,7 @@ const AddTask = () => {
 						<textarea
 							{...register("note")}
 							id="note"
-							placeholder="Это задание лучше выполнить с помощью Excel"
+							placeholder="Це завдання краще зробити за допомогою Excel"
 							className="rounded-md p-4 border-2 border-gray-300 outline-none"
 							rows={2}
 						/>

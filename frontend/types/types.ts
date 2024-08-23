@@ -30,6 +30,15 @@ export interface ITaskForm {
 	date: Date;
 }
 
+export interface IUpdTaskForm {
+	note?: string;
+	teacher?: string;
+	task?: string;
+	topic?: string;
+	id?: string;
+	date?: Date | null;
+}
+
 export type SbjTypes = {
 	name: string;
 	teacher: string;
