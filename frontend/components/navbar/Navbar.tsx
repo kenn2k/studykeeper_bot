@@ -1,13 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/components/hooks/useAuth";
+import { authService } from "@/services/auth";
 
 export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
-
+	const router = useRouter();
+	const isAuthenticated = useAuth();
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const handleLogout = async () => {
+		await authService.logout();
+		router.push("/auth/login");
 	};
 	return (
 		<header className=" fixed top-0 right-0 p-[5%] z-50">
@@ -36,26 +45,36 @@ export const Navbar = () => {
 					isOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 			>
-				<nav className=" flex justify-center flex-col gap-4 mt-20 items-center">
+				<nav className=" px-4 flex justify-center flex-col text-lg font-bold gap-4 mt-20  items-start">
 					<Link
 						href="/tasks"
-						className="block text-xl p-4 text-[#C778DD]"
+						className="block  p-4 text-[#C778DD]"
 					>
 						Обрати предмет
 					</Link>
 					<Link
 						href="/tasks/add-task"
-						className="block text-xl p-4 text-[#C778DD]"
+						className="block  p-4 text-[#C778DD]"
 					>
 						Додати завдання
 					</Link>
 
 					<Link
 						href="/tasks/calendar"
-						className="block text-xl p-4 text-[#C778DD]"
+						className="block  p-4 text-[#C778DD]"
 					>
 						Календар
 					</Link>
+					{isAuthenticated ? (
+						<button
+							onClick={handleLogout}
+							className=" p-4 text-[#C778DD]"
+						>
+							Вийти
+						</button>
+					) : (
+						<p>{""}</p>
+					)}
 				</nav>
 			</div>
 		</header>

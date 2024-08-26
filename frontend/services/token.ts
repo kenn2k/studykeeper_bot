@@ -17,6 +17,12 @@ class TokenService {
 			expires: 1,
 		});
 	}
+	removeAccessTokenFromCookies() {
+		Cookies.remove(this.ACCESS_TOKEN_NAME, {
+			domain: "localhost",
+			sameSite: "strict",
+		});
+	}
 }
 
 export const tokenService = new TokenService();

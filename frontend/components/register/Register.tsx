@@ -12,6 +12,7 @@ const Register = () => {
 	const {
 		register,
 		handleSubmit,
+		setError,
 		formState: { errors },
 	} = useForm<IAuthForm>();
 
@@ -21,7 +22,11 @@ const Register = () => {
 
 			router.push("/");
 		} catch (error) {
-			console.error("Registration error:", error);
+			console.error("Log in error:", error);
+			setError("email", {
+				type: "manual",
+				message: "Цей email вже зайнятий!",
+			});
 		}
 	};
 
@@ -47,10 +52,14 @@ const Register = () => {
 						type="email"
 						id="email"
 						placeholder="Email"
-						{...register("email", { required: "Email is required" })}
+						{...register("email", {
+							required: "Електронна пошта обов'язкова!",
+						})}
 					/>
 					{errors.email && (
-						<span className=" text-red-600 mt-3">{errors.email.message}</span>
+						<span className=" px-1 text-red-600 text-sm mt-3">
+							{errors.email.message}
+						</span>
 					)}
 				</div>
 				<div className="flex flex-col">
@@ -59,10 +68,10 @@ const Register = () => {
 						type="password"
 						id="password"
 						placeholder="Password"
-						{...register("password", { required: "Password is required" })}
+						{...register("password", { required: "Це поле обов'язкове!" })}
 					/>
 					{errors.password && (
-						<span className=" text-red-600 mt-3">
+						<span className=" px-1 text-red-600 text-sm mt-3">
 							{errors.password.message}
 						</span>
 					)}

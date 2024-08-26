@@ -9,9 +9,11 @@ import { authService } from "@/services/auth";
 
 const Login = () => {
 	const router = useRouter();
+
 	const {
 		register,
 		handleSubmit,
+		setError,
 		formState: { errors },
 	} = useForm<IAuthForm>();
 
@@ -19,9 +21,13 @@ const Login = () => {
 		try {
 			const response = await authService.main("login", data);
 			console.log("User logged in:", response.data);
-			router.push("/tasks");
+			router.push("/");
 		} catch (error) {
 			console.error("Log in error:", error);
+			setError("email", {
+				type: "manual",
+				message: "Incorrect login data. Please try again.",
+			});
 		}
 	};
 	return (
@@ -46,10 +52,14 @@ const Login = () => {
 						type="email"
 						id="email"
 						placeholder="Email"
-						{...register("email", { required: "Email is required" })}
+						{...register("email", {
+							required: "Електронна пошта обов'язкова!",
+						})}
 					/>
 					{errors.email && (
-						<span className=" text-red-600 mt-3">{errors.email.message}</span>
+						<span className="px-1 text-red-600 text-sm mt-3">
+							{errors.email.message}
+						</span>
 					)}
 				</div>
 				<div className="flex flex-col">
@@ -58,10 +68,10 @@ const Login = () => {
 						type="password"
 						id="password"
 						placeholder="Password"
-						{...register("password", { required: "Password is required" })}
+						{...register("password", { required: "Це поле обов'язкове!" })}
 					/>
 					{errors.password && (
-						<span className=" text-red-600 mt-3">
+						<span className=" px-1 text-red-600 text-sm mt-3">
 							{errors.password.message}
 						</span>
 					)}

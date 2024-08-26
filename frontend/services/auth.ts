@@ -20,4 +20,12 @@ export const authService = {
 			tokenService.saveAccessTokenInCookies(response.data.accessToken);
 		return response;
 	},
+	async logout() {
+		try {
+			await apiClassic.post("/auth/logout");
+			tokenService.removeAccessTokenFromCookies();
+		} catch (error) {
+			console.error("Logout failed:", error);
+		}
+	},
 };
