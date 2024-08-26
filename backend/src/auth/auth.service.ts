@@ -113,7 +113,6 @@ export class AuthService {
     });
   }
 
-  //! https://chatgpt.com/c/d9e29f53-d86d-49b8-8989-e8032212495c
   removeRefTokenToRes(res: Response) {
     res.cookie(this.REFRESH_TOKEN_NAME, '', {
       httpOnly: true,

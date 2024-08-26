@@ -30,9 +30,10 @@ const AddTask = () => {
 
 	return (
 		<div className="p-[5%] h-screen">
-			<div className="h-full flex items-center justify-center">
+			<div className="h-full flex items-center flex-col justify-center">
+				<h1 className=" text-white text-xl mb-6">Створення завдання</h1>
 				<form
-					className="bg-[#2C2C2C] shadow-lg rounded-md w-full max-w-md flex flex-col gap-5 p-6"
+					className="bg-[#2C2C2C] text-sm shadow-lg rounded-md w-full max-w-md flex flex-col gap-5 p-6"
 					onSubmit={handleSubmit(onSubmit)}
 				>
 					<div className="flex flex-col">
@@ -47,10 +48,10 @@ const AddTask = () => {
 							type="text"
 							id="topic"
 							placeholder="Математика"
-							className="rounded-md px-4 py-3 border-2 border-gray-300 outline-none"
+							className="rounded-md px-3 py-2 border-2 border-gray-300 outline-none"
 						/>
 						{errors.topic && (
-							<span className="text-red-500">
+							<span className="text-red-500 mt-2 px-1.5 text-xs">
 								Це поле не повинно бути пустим
 							</span>
 						)}
@@ -67,10 +68,12 @@ const AddTask = () => {
 							type="text"
 							id="teacher"
 							placeholder="Гефтер С. Л."
-							className="rounded-md px-4 py-3 border-2 border-gray-300 outline-none"
+							className="rounded-md px-3 py-2 border-2 border-gray-300 placeholder:text-xs outline-none"
 						/>
 						{errors.teacher && (
-							<span className="text-red-500">Ініціали викладача</span>
+							<span className="text-red-500 mt-2 px-1.5 text-xs">
+								Ініціали викладача
+							</span>
 						)}
 					</div>
 					<div className="flex flex-col">
@@ -84,8 +87,8 @@ const AddTask = () => {
 							{...register("task")}
 							id="task"
 							placeholder="Зробити №12, №19, №20"
-							className="rounded-md p-4 border-2 border-gray-300 outline-none"
-							rows={3}
+							className="rounded-md p-3 border-2 border-gray-300 placeholder:text-xs outline-none"
+							rows={2}
 						/>
 					</div>
 					<div className="flex flex-col">
@@ -99,7 +102,7 @@ const AddTask = () => {
 							{...register("note")}
 							id="note"
 							placeholder="Це завдання краще зробити за допомогою Excel"
-							className="rounded-md p-4 border-2 border-gray-300 outline-none"
+							className="rounded-md p-3 border-2 border-gray-300 placeholder:text-xs outline-none"
 							rows={2}
 						/>
 					</div>
@@ -114,14 +117,18 @@ const AddTask = () => {
 							{...register("date", { required: true })}
 							id="date"
 							type="date"
-							className="rounded-md px-4 py-3 border-2 border-gray-300 outline-none"
+							className="rounded-md px-3 py-2 border-2 border-gray-300 placeholder:text-xs outline-none"
 						/>
-						{errors.date && <span className="text-red-500">Оберіть дату</span>}
+						{errors.date && (
+							<span className="text-red-500 mt-2 px-1.5 text-xs">
+								Оберіть дату
+							</span>
+						)}
 					</div>
 
 					<button
 						type="submit"
-						className="btn-3d  text-[#C778DD] rounded-md"
+						className="btn-3d border-[#C778DD] bg-[#C778DD] self-center px-6 py-1.5 border-2  text-white rounded-md"
 					>
 						Додати
 					</button>

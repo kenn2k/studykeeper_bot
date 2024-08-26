@@ -1,13 +1,19 @@
 "use client";
 
+import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar/Navbar";
 
 const Main = () => {
 	return (
-		<div className="h-[calc(100vh-71px)]">
+		<div className="h-[calc(100vh-73.38px)]">
 			<header className="flex justify-between items-center p-[5%]">
-				<h1 className="text-2xl text-white font-bold">Study Keeper</h1>
+				<h1 className="text-2xl flex gap-3 items-center text-white font-bold">
+					Study Keeper{" "}
+					<span>
+						<GraduationCap size={28} />
+					</span>
+				</h1>
 
 				<Navbar />
 			</header>

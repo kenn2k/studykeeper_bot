@@ -26,7 +26,7 @@ const Login = () => {
 			console.error("Log in error:", error);
 			setError("email", {
 				type: "manual",
-				message: "Incorrect login data. Please try again.",
+				message: "Неправильні дані для входу.",
 			});
 		}
 	};

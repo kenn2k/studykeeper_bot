@@ -1,5 +1,6 @@
 "use client";
 
+import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -46,6 +47,12 @@ export const Navbar = () => {
 				}`}
 			>
 				<nav className=" px-4 flex justify-center flex-col text-lg font-bold gap-4 mt-20  items-start">
+					<Link
+						href="/"
+						className="block self-center  p-4 text-[#C778DD]"
+					>
+						<GraduationCap size={35} />
+					</Link>
 					<Link
 						href="/tasks"
 						className="block  p-4 text-[#C778DD]"
