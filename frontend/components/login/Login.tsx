@@ -20,7 +20,7 @@ const Login = () => {
 	const onSubmit = async (data: IAuthForm) => {
 		try {
 			const response = await authService.main("login", data);
-			console.log("User logged in:", response.data);
+
 			router.push("/");
 		} catch (error) {
 			console.error("Log in error:", error);

@@ -1,8 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useCreateTask } from "@/components/hooks/useForm";
 import { ITaskForm } from "@/types/types";
+import { useCreateTask } from "@/hooks/useForm";
 
 const AddTask = () => {
 	const {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AUTH, DASHBOARD } from "@/components/constants/routes.constants";
+import { AUTH, DASHBOARD } from "@/constants/routes.constants";
 import { tokenService } from "@/services/token";
 
 export async function middleware(req: NextRequest, res: NextResponse) {

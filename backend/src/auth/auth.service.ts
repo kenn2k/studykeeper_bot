@@ -104,7 +104,7 @@ export class AuthService {
       httpOnly: true,
 
       //! get domain from .env for production
-      domain: 'localhost',
+      domain: process.env.NEST_PUBLIC_DOMAIN,
       expires: expiresIn,
       secure: true,
 
@@ -116,7 +116,7 @@ export class AuthService {
   removeRefTokenToRes(res: Response) {
     res.cookie(this.REFRESH_TOKEN_NAME, '', {
       httpOnly: true,
-      domain: 'localhost',
+      domain: process.env.NEST_PUBLIC_DOMAIN,
       expires: new Date(0),
       secure: true,
 

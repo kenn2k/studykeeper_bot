@@ -12,14 +12,14 @@ class TokenService {
 
 	saveAccessTokenInCookies(accessToken: string) {
 		Cookies.set(this.ACCESS_TOKEN_NAME, accessToken, {
-			domain: "localhost",
+			domain: process.env.NEXT_PUBLIC_DOMAIN,
 			sameSite: "strict",
 			expires: 1,
 		});
 	}
 	removeAccessTokenFromCookies() {
 		Cookies.remove(this.ACCESS_TOKEN_NAME, {
-			domain: "localhost",
+			domain: process.env.NEXT_PUBLIC_DOMAIN,
 			sameSite: "strict",
 		});
 	}

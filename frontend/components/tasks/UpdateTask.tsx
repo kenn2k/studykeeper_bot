@@ -2,8 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useEditTask } from "@/components/hooks/useForm";
 import { ITaskForm, IUpdTaskForm } from "@/types/types";
+import { useEditTask } from "@/hooks/useForm";
 
 const UpdateTask = () => {
 	const { register, handleSubmit } = useForm<IUpdTaskForm>();

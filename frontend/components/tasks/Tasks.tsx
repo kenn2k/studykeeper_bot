@@ -1,8 +1,8 @@
 "use client";
 
-import { useGetTasks } from "@/components/hooks/useForm";
 import TaskItem from "@/components/tasks/TaskItem";
 import { ITaskForm } from "@/types/types";
+import { useGetTasks } from "@/hooks/useForm";
 import { taskService } from "@/services/task";
 
 interface ITaskItemProps extends ITaskForm {

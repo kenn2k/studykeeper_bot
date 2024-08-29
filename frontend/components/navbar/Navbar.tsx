@@ -4,7 +4,7 @@ import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useAuth } from "@/components/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { authService } from "@/services/auth";
 
 export const Navbar = () => {
