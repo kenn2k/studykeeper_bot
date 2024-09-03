@@ -18,17 +18,17 @@ const Main = () => {
 				<Navbar />
 			</header>
 			<main className="p-[5%] flex-col flex h-full gap-5 justify-center  items-center">
-				<p className="text-center  text-xl mb-4 shadow-md text-purple-400">
+				<p className="text-center rounded-md text-xl mb-4 shadow-md text-purple-400">
 					З Study Keeper ти завжди в курсі своїх завдань. <br />
 					Додавай, плануй, виконуй!
 				</p>
-				<div className="bg-[#2C2C2C]   font-bold px-3 shadow-md  py-5 w-full text-center text-[#C778DD]">
+				<div className="bg-[#2C2C2C] rounded-md   font-bold px-3 shadow-md  py-5 w-full text-center text-[#C778DD]">
 					<Link href="/tasks">Обрати предмет</Link>
 				</div>
-				<div className="bg-[#2C2C2C] px-3 py-5 shadow-md shadow-[#2C2C2C]  w-full text-center text-[#C778DD]">
+				<div className="bg-[#2C2C2C] px-3 rounded-md py-5 shadow-md shadow-[#2C2C2C]  w-full text-center text-[#C778DD]">
 					<Link href="/tasks/add-task">Додати завдання</Link>
 				</div>
-				<div className="bg-[#2C2C2C] px-3 py-5 w-full shadow-md   text-center text-[#C778DD]">
+				<div className="bg-[#2C2C2C] px-3 py-5 rounded-md  w-full shadow-md   text-center text-[#C778DD]">
 					<Link href="/tasks/calendar">Календар</Link>
 				</div>
 			</main>

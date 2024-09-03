@@ -2,9 +2,8 @@ import { ConfigService } from '@nestjs/config';
 
 import { TelegrafModuleOptions } from 'nestjs-telegraf';
 
-export const getBotConfig = async (
+export const getBotConfig = (
   configService: ConfigService,
-): Promise<TelegrafModuleOptions> => ({
-  //` receive from .env
+): TelegrafModuleOptions => ({
   token: configService.get('TELEGRAM_BOT_TOKEN'),
 });

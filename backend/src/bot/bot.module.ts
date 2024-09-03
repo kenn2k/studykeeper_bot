@@ -1,19 +1,21 @@
 import { Module } from '@nestjs/common';
 import { BotService } from './bot.service';
-import { BotController } from './bot.controller';
+
 import { TelegrafModule } from 'nestjs-telegraf';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { getBotConfig } from 'src/config/bot.config';
+
+import { BotUpdate } from 'src/bot/bot.update';
+import * as LocalSession from 'telegraf-session-local';
+
+const sessions = new LocalSession({ database: 'session_db.json' });
 
 @Module({
   imports: [
-    TelegrafModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: getBotConfig,
+    TelegrafModule.forRoot({
+      middlewares: [sessions.middleware()],
+      token: process.env.TELEGRAM_BOT_TOKEN,
     }),
   ],
-  controllers: [BotController],
-  providers: [BotService],
+
+  providers: [BotService, BotUpdate],
 })
 export class BotModule {}

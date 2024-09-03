@@ -1,22 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
-    provider  = "postgresql"
-    url       = env("POSTGRES_PRISMA_URL")
-    directUrl = env("POSTGRES_URL_NON_POOLING")
-    // sdfg   url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+    // directUrl = env("DIRECT_URL")
 }
 
 model User {
-    id        String   @id @default(cuid())
+    id String @id @default(cuid())
+
+    //! in JS will call createdAt but in the Databse - created_at
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @updatedAt @map("updated_at")
-    email     String   @unique
-    name      String?
-    password  String
-    tasks     Task[]
+
+    email    String  @unique
+    name     String?
+    password String
+
+    tasks Task[]
 
     @@map("user")
 }
@@ -26,10 +32,23 @@ model Task {
     note    String?
     task    String?
     date    DateTime?
-    userId  String    @map("user_id")
-    teacher String?
     topic   String?
-    user    User      @relation(fields: [userId], references: [id])
+    teacher String?
+    userId  String    @map("user_id")
+    // subjectId String   @map("subject_id")
+
+    //! connection with User by userId
+    user User @relation(fields: [userId], references: [id])
+    // subject Subject @relation(fields: [subjectId], references: [id])
 
     @@map("task")
 }
+
+// model Subject {
+//     id      String @id @default(cuid())
+//     topic   String
+//     teacher String
+//     tasks   Task[]
+
+//     @@map("subject")
+// }
