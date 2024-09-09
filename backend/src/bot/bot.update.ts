@@ -22,7 +22,7 @@ export class BotUpdate {
     await ctx.telegram.sendMessage(
       ctx.message.chat.id,
       `Привіт, ${ctx.from.first_name}! 👋\n\n` +
-        `Щоб почати працювати з ботом, натисніть /openApp.\n\n` +
+        `Щоб почати працювати з ботом, натисніть /launch.\n\n` +
         `✨ *Основні переваги використання бота:*\n\n` +
         `✅ Зручний формат створення та перегляду завдань.\n\n` +
         `📅 Можливість перегляду усіх доданих завдань у календарі.\n\n` +
@@ -33,7 +33,7 @@ export class BotUpdate {
     );
   }
 
-  @Command('openApp')
+  @Command('launch')
   async setMenu(ctx: Context) {
     try {
       await ctx.setChatMenuButton({
@@ -41,7 +41,9 @@ export class BotUpdate {
         type: 'web_app',
         web_app: { url: process.env.WEB_APP_URL },
       });
-      await ctx.reply('Menu button has been set!');
+      await ctx.reply(
+        'Натисніть на "Open", щоб почати користуватися Study Keeper!',
+      );
     } catch (error) {
       console.error('Failed to set menu button:', error);
       await ctx.reply('Failed to set menu button.');
