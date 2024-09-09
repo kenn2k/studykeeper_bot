@@ -21,12 +21,25 @@ const Register = () => {
 			const response = await authService.main("register", data);
 
 			router.push("/");
-		} catch (error) {
-			console.error("Log in error:", error);
-			setError("email", {
-				type: "manual",
-				message: "Цей email вже зайнятий!",
-			});
+		} catch (error: any) {
+			console.error("Registration error:", error);
+
+			if (error.response && error.response.status === 500) {
+				setError("email", {
+					type: "manual",
+					message: "Помилка сервера. База даних недоступна!",
+				});
+			} else if (error.response && error.response.status === 409) {
+				setError("email", {
+					type: "manual",
+					message: "Цей email вже зайнятий!",
+				});
+			} else {
+				setError("email", {
+					type: "manual",
+					message: "Виникла помилка. Спробуйте ще раз.",
+				});
+			}
 		}
 	};
 

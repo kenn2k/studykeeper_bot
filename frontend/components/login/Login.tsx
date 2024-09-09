@@ -22,12 +22,25 @@ const Login = () => {
 			const response = await authService.main("login", data);
 
 			router.push("/");
-		} catch (error) {
+		} catch (error: any) {
 			console.error("Log in error:", error);
-			setError("email", {
-				type: "manual",
-				message: "Неправильні дані для входу.",
-			});
+
+			if (error.response && error.response.status === 500) {
+				setError("email", {
+					type: "manual",
+					message: "Помилка сервера. База даних недоступна!",
+				});
+			} else if (error.response && error.response.status === 401) {
+				setError("email", {
+					type: "manual",
+					message: "Неправильні дані для входу.",
+				});
+			} else {
+				setError("email", {
+					type: "manual",
+					message: "Виникла помилка. Спробуйте ще раз.",
+				});
+			}
 		}
 	};
 	return (
