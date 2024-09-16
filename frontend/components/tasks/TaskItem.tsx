@@ -25,7 +25,7 @@ const TaskItem = ({
 
 	return (
 		<>
-			<h1 className="mt-10 text-lg font-bold p-2 rounded-t-lg text-[#C778DD] bg-[#2C2C2C] inline-flex items-center gap-2">
+			<h1 className="mt-6 text-lg font-bold p-2 rounded-t-lg text-[#C778DD] bg-[#2C2C2C] inline-flex items-center gap-2">
 				{topic}
 				<div className="relative group">
 					<Info className="text-[#C778DD] cursor-pointer" />

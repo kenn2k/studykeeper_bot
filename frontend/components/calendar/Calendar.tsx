@@ -33,7 +33,7 @@ const Calendar = () => {
 		);
 	};
 	return (
-		<div className="px-[5%] h-screen flex items-center justify-center text-[#C778DD]">
+		<div className="p-[5%] h-screen flex items-center justify-center text-[#C778DD]">
 			<FullCalendar
 				plugins={[dayGridPlugin, interactionPlugin]}
 				initialView="dayGridMonth"
